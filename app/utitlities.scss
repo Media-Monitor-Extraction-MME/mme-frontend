@@ -1,0 +1,45 @@
+.border {
+  &-b-1 {
+    border-bottom-width: 1px;
+  }
+  &-t-1 {
+    border-top-width: 1px;
+  }
+  &-l-1 {
+    border-left-width: 1px;
+  }
+  &-r-1 {
+    border-right-width: 1px;
+  }
+  &-y-1 {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+  }
+  &-x-1 {
+    border-left-width: 1px;
+    border-right-width: 1px;
+  }
+  &-b-none {
+    border-bottom-width: 0;
+  }
+  &-t-none {
+    border-top-width: 0;
+  }
+  &-l-none {
+    border-left-width: 0;
+  }
+  &-r-none {
+    border-right-width: 0;
+  }
+  &-x-none {
+    border-left-width: 0;
+    border-right-width: 0;
+  }
+  &-y-none {
+    border-top-width: 0;
+    border-bottom-width: 0;
+  }
+  &-none {
+    border-width: 0;
+  }
+}

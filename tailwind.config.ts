@@ -51,8 +51,8 @@ export default {
           '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
       },
       borderRadius: {
-        'tremor-small': '0.375rem',
-        'tremor-default': '0.5rem',
+        'tremor-small': '0',
+        'tremor-default': '0',
         'tremor-full': '9999px'
       },
       fontSize: {

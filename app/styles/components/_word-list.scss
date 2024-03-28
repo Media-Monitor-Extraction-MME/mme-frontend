@@ -1,0 +1,35 @@
+@use '../../utitlities.scss';
+%wordlist {
+  li {
+    background-color: #f2f4f8;
+    padding: 1rem;
+    div {
+      display: flex;
+      justify-content: space-between;
+      b {
+        font-size: 16px;
+      }
+      span {
+        font-size: 16px;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+.wordlist {
+  @extend %wordlist;
+  li {
+    @apply bg-transparent border-b-[#dde1e6] border-solid border-b-1;
+  }
+  li:last-child {
+    @apply border-none;
+  }
+}
+
+.wordlist-striped {
+  @extend %wordlist;
+  li:nth-child(even) {
+    @apply bg-transparent;
+  }
+}
