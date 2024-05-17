@@ -1,0 +1,22 @@
+.source-card {
+  @apply bg-white flex p-6 my-2 items-center mb-5;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  &__logo {
+    @apply mr-5 flex items-center;
+    height: 80px;
+  }
+
+  &__button {
+    @apply ml-auto py-2 px-5 text-white h5;
+    font-size: 20px;
+    border-radius: 4px;
+    background: #5e47eb;
+    &.selected {
+      background: #47c4eb;
+    }
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.dropdown-button {
+  @apply relative inline-block text-left mr-3;
+
+  div {
+    @apply inline-flex;
+
+    button {
+      @apply bg-[#0F62FE] text-white inline-flex items-center;
+      svg {
+        @apply w-4 h-4 text-white;
+      }
+    }
+  }
+
+  div:first-child {
+    button {
+      border-right: #90b7ff 1px solid;
+    }
+    .custom-checkbox {
+      border-right: #90b7ff 1px solid;
+    }
+  }
+}

@@ -9,6 +9,22 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+}
+
+iframe {
+  image {
+    display: none;
+  }
+}
+
 .post {
   background-color: #f2f4f8;
   padding: 1rem;
@@ -93,4 +109,43 @@
       border-right-width: 1px;
     }
   }
+}
+
+.page-title {
+  @apply bg-white inline-flex items-center justify-between py-4 m-auto sticky top-0 z-50;
+  height: 10vh;
+  width: 100%;
+
+  h1 {
+    @apply my-auto pl-4 text-4xl font-bold;
+    align-content: center;
+  }
+}
+
+* {
+  @apply font-regular;
+}
+
+h1 {
+  @apply h1;
+}
+
+h2 {
+  @apply h2;
+}
+
+h3 {
+  @apply h3;
+}
+
+h4 {
+  @apply h4;
+}
+
+h5 {
+  @apply h5;
+}
+
+h6 {
+  @apply h6;
 }

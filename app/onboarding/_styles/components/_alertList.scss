@@ -1,0 +1,43 @@
+.alert-list {
+  @apply flex flex-col px-8 py-3;
+  background: #47c4eb;
+  border-radius: 5px;
+
+  &__item {
+    @apply flex justify-between mt-2 text-white;
+
+    &__button-holder {
+      @apply mr-3;
+    }
+
+    &__button {
+      @apply text-white mr-2;
+
+      svg {
+        @apply w-5 h-5;
+      }
+    }
+  }
+
+  &__header {
+    @apply flex justify-between items-center;
+    padding: 10px 20px;
+    border-bottom: 1px solid white;
+
+    &__title {
+      @apply text-white mb-2;
+      font-size: 36px;
+    }
+
+    &__create-button {
+      @apply py-1 px-20 text-white;
+      font-size: 24px;
+      border-radius: 4px;
+      background: #5e47eb;
+
+      &:hover {
+        background: #3f25e1;
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+.select-wrapper {
+  @apply bg-white;
+  border-radius: 5px;
+  position: relative;
+  width: 100%;
+
+  select {
+    @apply bg-white px-2 py-3;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #000;
+    border: none;
+    width: 100%;
+    outline: none;
+
+    &[data-chosen=''] {
+      color: rgb(0, 0, 0, 0.5);
+    }
+
+    option:disabled {
+      color: rgb(0, 0, 0, 0.5);
+    }
+    option {
+      color: #000;
+    }
+  }
+  &:focus-within {
+    &::after {
+      content: '▼';
+      font-size: 1rem;
+      top: 40%;
+      transform: rotate(90deg) translateX(-50%);
+      right: 10px;
+      position: absolute;
+    }
+  }
+  &::after {
+    content: '▼';
+    font-size: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    position: absolute;
+  }
+}

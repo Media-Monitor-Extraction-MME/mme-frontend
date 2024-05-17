@@ -1,0 +1,114 @@
+.keyword-page {
+  h2 {
+    @apply h1;
+  }
+  p {
+  }
+  .keyword-table {
+    @apply mb-5;
+    display: table;
+    width: 100%;
+    thead {
+      tr {
+        th {
+          @apply h5;
+          text-align: left;
+          font-weight: 400;
+        }
+        th:nth-child(1) {
+          width: 20%;
+        }
+      }
+    }
+    tbody {
+      border: 1px solid #eeeeee;
+      tr {
+        border-bottom: 1px solid #eeeeee;
+
+        td:nth-child(1) {
+          @apply py-1 pl-2 h5;
+          border-radius: 5px;
+          width: 20%;
+          input {
+            @apply px-2 py-1;
+            width: auto;
+            // padding: 5px;
+            border: 1px solid #eeeeee;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+          }
+        }
+        td {
+          .secondary-words {
+            @apply flex;
+            > button {
+              @apply cursor-pointer px-2 py-2 h5;
+              border-radius: 5px;
+              border: 1px solid #eeeeee;
+            }
+            > input {
+              @apply px-2 py-1 h5;
+              width: auto;
+              // padding: 5px;
+              border: 1px solid #eeeeee;
+              border-radius: 5px;
+              font-size: 16px;
+            }
+          }
+          // button {
+          //   @apply bg-black text-white font-bold py-2 px-4;
+
+          //   border-color: transparent;
+          //   text-decoration: none;
+          //   margin-left: auto;
+          //   font-size: 20px;
+          //   justify-content: center;
+          //   align-items: center;
+          // }
+        }
+      }
+      tr:last-child {
+        border-bottom: none;
+        td {
+          @apply py-1 px-2;
+          button {
+            @apply bg-[#5E47EB] text-white font-bold py-2 px-4 h4;
+            padding-left: 100px;
+            border-radius: 5px;
+            padding-right: 100px;
+            border-color: transparent;
+            text-decoration: none;
+            margin-left: auto;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            &:hover {
+              background: #3f25e1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .btn-group {
+    @apply flex content-end;
+    .keyword-save {
+      @apply bg-[#5E47EB] text-white font-bold py-2 px-4 h4;
+      padding-left: 100px;
+      border-radius: 5px;
+      padding-right: 100px;
+      border-color: transparent;
+      text-decoration: none;
+      margin-left: auto;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background: #3f25e1;
+      }
+    }
+  }
+}

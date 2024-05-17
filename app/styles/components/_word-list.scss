@@ -2,7 +2,6 @@
 %wordlist {
   li {
     background-color: #f2f4f8;
-    padding: 1rem;
     div {
       display: flex;
       justify-content: space-between;
@@ -19,8 +18,11 @@
 
 .wordlist {
   @extend %wordlist;
+  li:first-child {
+    @apply pt-3;
+  }
   li {
-    @apply bg-transparent border-b-[#dde1e6] border-solid border-b-1;
+    @apply pb-2 px-3 pt-2 bg-transparent border-b-[#dde1e6] border-solid border-b-1;
   }
   li:last-child {
     @apply border-none;

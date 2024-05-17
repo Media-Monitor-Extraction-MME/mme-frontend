@@ -1,0 +1,14 @@
+.badge {
+  @apply flex text-sm font-semibold;
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+  background-color: #5e47eb;
+
+  span {
+    @apply text-white py-2 px-2;
+  }
+  button {
+    @apply cursor-pointer px-2 py-2 text-white;
+    border-left: 1px solid #e5e7eb;
+  }
+}

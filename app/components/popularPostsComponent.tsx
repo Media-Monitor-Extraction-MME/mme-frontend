@@ -1,23 +1,54 @@
-import { Grid, Icon } from '@tremor/react';
-import Image from 'next/image';
-import {
-  RiExternalLinkLine,
-  RiRedditLine,
-  RiTwitterXLine
-} from '@remixicon/react';
+'use client';
+import { useEffect, useState } from 'react';
+import RedditEmbed from './RedditEmbed';
+import '@/styles/components/_popular-posts.scss';
 
 interface PopularPostsProps {
-  posts: Array<{
-    title?: string;
-    content: string;
-    platform: 'reddit' | 'twitter';
-    postedAt: Date;
-  }>;
+  // posts: Array<{
+  //   title?: string;
+  //   content: string;
+  //   platform: 'reddit' | 'twitter';
+  //   postedAt: Date;
+  // }>;
+  keywords: string[];
 }
-export function PopularPostsComponent({ posts }: PopularPostsProps) {
+
+interface Post {
+  title: string;
+  url: string;
+  origin: string;
+  upvotes: number;
+  time: string;
+}
+export function PopularPostsComponent({ keywords }: PopularPostsProps) {
+  const [posts, setPosts] = useState<Post[]>([]);
+  useEffect(() => {
+    if (keywords === undefined) {
+      return;
+    }
+    fetch(
+      `http://localhost:3001/posts?keywords=${keywords.join(',')}&limit=100&sort={field:upvotes,order:desc}`
+    ).then(async (res) => {
+      const data = (await res.json()) as Post[];
+
+      const uniquePosts = data.reduce((acc: Post[], post: Post) => {
+        const existingPost = acc.find((p) => p.title === post.title);
+        if (!existingPost) {
+          acc.push(post);
+        }
+        return acc;
+      }, []);
+
+      setPosts(uniquePosts);
+    });
+  }, [setPosts, keywords]);
+  console.log(posts);
   return (
     <div className="posts gap-6">
       {posts.map((post, index) => (
+        <RedditEmbed key={index} url={post.url} />
+      ))}
+      {/* {posts.map((post, index) => (
         <div key={index} className="post">
           <div>
             <div className="post-image">
@@ -60,7 +91,7 @@ export function PopularPostsComponent({ posts }: PopularPostsProps) {
           {post.title ? <b>{post.title}</b> : <></>}
           <p>{post.content}</p>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

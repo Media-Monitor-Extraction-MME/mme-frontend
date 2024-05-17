@@ -1,0 +1,35 @@
+.example-alert {
+  @apply flex px-8 py-4 mb-12 mt-6 flex-col;
+  border-radius: 5px;
+  background: #5e47eb;
+  hr {
+    @apply bg-white mb-2;
+    width: 100%;
+  }
+  &__title {
+    @apply font-bold text-white mb-2 h3;
+    // font-family: 'Montserrat';
+    // font-size: 24px;
+  }
+  &__list-item:nth-last-child(1) {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+  &__list-item {
+    @apply flex flex-col mb-2;
+    border-bottom: 1px solid white;
+
+    &__title {
+      @apply text-white mb-1;
+      font-size: 20px;
+    }
+    &__source {
+      @apply text-white mb-1;
+      font-size: 18px;
+    }
+    &__description {
+      @apply text-white mb-3;
+      font-size: 16px;
+    }
+  }
+}

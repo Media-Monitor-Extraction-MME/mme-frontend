@@ -1,0 +1,64 @@
+.sidebar {
+  @apply bg-white text-black h-screen sticky top-0 z-50;
+  width: 227px;
+  border-right: 1px solid #e4e4e4;
+
+  #logo {
+    @apply flex items-center justify-center py-4 m-auto;
+    height: 10vh;
+  }
+
+  .bottom-list {
+    @apply mt-auto mb-0;
+    li {
+      @apply flex flex-row gap-2;
+      span {
+        @apply my-auto;
+      }
+    }
+  }
+  .top-list {
+    @apply mt-0 mb-auto;
+    li {
+      @apply mx-3 my-1;
+      img {
+        @apply w-6 h-6;
+      }
+    }
+    li.active {
+      @apply text-[#5E47EB] bg-[#EBEBFF] mx-3 my-1;
+      border-radius: 5px;
+      svg {
+        @apply text-[#5E47EB];
+      }
+    }
+    li:hover {
+      @apply text-[#5E47EB] bg-[#EBEBFF] mx-3 my-1;
+      border-radius: 5px;
+      svg {
+        @apply text-[#5E47EB];
+      }
+      cursor: pointer;
+    }
+  }
+  div {
+    @apply flex flex-col;
+    height: 90vh;
+    ul {
+      li {
+        @apply py-3 px-4 flex gap-2 font-bold;
+      }
+      li:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.notication-count {
+  @apply bg-[#787878] text-white rounded-full my-auto;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+}

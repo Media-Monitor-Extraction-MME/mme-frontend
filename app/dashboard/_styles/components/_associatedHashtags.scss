@@ -1,0 +1,47 @@
+.associated-hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  width: 100%;
+
+  &__titles {
+    @apply grid grid-cols-3 justify-between font-bold pb-2;
+    border-bottom: 1px solid #e2e8f0;
+    color: #696565;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    width: 100%;
+
+    * {
+      @apply text-right mx-2;
+    }
+
+    *:nth-child(1) {
+      @apply text-left;
+    }
+  }
+
+  &__row {
+    @apply grid grid-cols-3 justify-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    width: 100%;
+
+    * {
+      @apply text-right mx-2;
+    }
+
+    &__hashtag {
+      @apply font-bold text-left;
+      div {
+        @apply bg-[#EBEBFF] py-1 px-2 inline-block;
+        border-radius: 5px;
+        *:nth-child(1) {
+          @apply text-[#6461E5] mr-0 ml-0;
+        }
+      }
+    }
+  }
+}

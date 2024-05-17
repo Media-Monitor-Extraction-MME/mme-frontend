@@ -1,0 +1,6 @@
+.custom-checkbox {
+  @apply bg-[#0F62FE] text-white px-2 py-2 inline-flex items-center;
+  .check-svg {
+    @apply mr-1;
+  }
+}

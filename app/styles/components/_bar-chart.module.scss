@@ -1,0 +1,18 @@
+$barColors: rgb(221, 225, 230), rgb(135, 141, 150);
+// $barColorHover: rgb(135, 141, 150);
+
+:export {
+  barColors: $barColors;
+}
+
+.barchart {
+  // width: 100%;
+  max-height: 200px;
+  // background-color: purple;
+  // div {
+  //   padding: 20px;
+  //   svg {
+  //     padding: 20px;
+  //   }
+  // }
+}

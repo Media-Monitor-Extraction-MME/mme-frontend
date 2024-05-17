@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Pointer Example</title>
+  </head>
+  <body>
+    <svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Half circle divided into three mood sections -->
+      <!-- MoodNegative: first third of the semi-circle -->
+      <path
+        d="M 10,90 A 90,90 0 0,1 65,25"
+        fill="none"
+        stroke="red"
+        stroke-width="20"
+      />
+      <!-- MoodNeutral: second third of the semi-circle -->
+      <path
+        d="M 65,25 A 90,90 0 0,1 135,25"
+        fill="none"
+        stroke="yellow"
+        stroke-width="20"
+      />
+      <!-- MoodPositive: final third of the semi-circle -->
+      <path
+        d="M 135,25 A 90,90 0 0,1 190,90"
+        fill="none"
+        stroke="green"
+        stroke-width="20"
+      />
+
+      <!-- MoodPointer initially positioned at the start of the MoodNegative section -->
+      <circle id="MoodPointer" cx="10" cy="90" r="10" fill="blue" />
+    </svg>
+
+    <script>
+      // Function to move the MoodPointer to different mood sections
+      // Function to calculate position on an arc given the center, radius, start angle, and percentage
+      function getPositionOnArc(cx, cy, radius, startAngle, percentage) {
+        const angle = startAngle + (percentage * 120) / 100; // Calculate the angle for the given percentage of 120 degrees
+        const radians = angle * (Math.PI / 180); // Convert angle to radians
+        // Adjusting the y-coordinate calculation to match SVG's coordinate system
+        return {
+          x: cx + radius * Math.cos(radians),
+          y: cy + radius * Math.sin(radians) // Use `+` because SVG's y-axis increases downwards
+        };
+      }
+
+      // Modify moveToMood to optionally accept a percentage for the MoodPositive section
+      function moveToMood(mood, percentage = 0) {
+        var pointer = document.getElementById('MoodPointer');
+        var cx = 100,
+          cy = 100,
+          radius = 90; // Center and radius of the semi-circle
+        var startAngle = 240; // Start angle for MoodPositive at 240 degrees
+
+        if (mood === 'MoodPositive' && percentage > 0) {
+          var position = getPositionOnArc(
+            cx,
+            cy,
+            radius,
+            startAngle,
+            percentage
+          );
+          console.log(position);
+          pointer.setAttribute('cx', position.x);
+          pointer.setAttribute('cy', position.y);
+        } else {
+          // Default positions for other moods or if no percentage provided
+          var positions = {
+            MoodNegative: { cx: 10, cy: 90 },
+            MoodNeutral: { cx: 100, cy: 15 },
+            MoodPositive: { cx: 190, cy: 90 }
+          };
+
+          if (positions[mood]) {
+            pointer.setAttribute('cx', positions[mood].cx);
+            pointer.setAttribute('cy', positions[mood].cy);
+          } else {
+            console.log('Invalid mood section');
+          }
+        }
+      }
+
+      // Example usage to move the pointer to 30% along the 'MoodPositive' section
+      moveToMood('MoodPositive', 30);
+
+      // Move the pointer to the 'MoodNeutral' section after 2 seconds
+    </script>
+  </body>
+</html>

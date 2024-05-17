@@ -92,5 +92,59 @@ export default {
         /^(fill-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/
     }
   ],
-  plugins: [require('@headlessui/tailwindcss')]
+  plugins: [
+    require('@headlessui/tailwindcss'),
+    function ({ addUtilities }: any) {
+      addUtilities({
+        '.h1': {
+          fontSize: '48px',
+          fontFamily: '"Montserrat", sans-serif',
+          fontStyle: 'normal',
+          fontWeight: 600
+        },
+        '.h2': {
+          fontSize: '36px',
+          fontFamily: '"Montserrat", sans-serif',
+          fontStyle: 'normal',
+          fontWeight: 600
+        },
+        '.h3': {
+          fontSize: '24px',
+          fontFamily: '"Montserrat", sans-serif',
+          fontStyle: 'normal',
+          fontWeight: 600
+        },
+        '.h4': {
+          fontSize: '20px',
+          fontFamily: '"Montserrat", sans-serif',
+          fontStyle: 'normal',
+          fontWeight: 'unset'
+        },
+        '.h5': {
+          fontSize: '16px',
+          fontFamily: '"Montserrat", sans-serif',
+          fontStyle: 'normal',
+          fontWeight: 'unset'
+        },
+        '.h6': {
+          fontSize: '14px',
+          fontFamily: '"Montserrat", sans-serif',
+          fontStyle: 'normal',
+          fontWeight: 'unset'
+        },
+        '.font-regular': {
+          fontFamily: '"Open Sans", sans-serif',
+          fontSize: 16,
+          fontStyle: 'normal',
+          fontWeight: 'unset'
+        },
+        '.font-secondary': {
+          fontFamily: '"Open Sans", sans-serif',
+          fontSize: 14,
+          fontStyle: 'normal',
+          fontWeight: 'unset'
+        }
+      });
+    }
+  ]
 } satisfies Config;

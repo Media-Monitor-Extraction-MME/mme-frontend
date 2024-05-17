@@ -1,0 +1,21 @@
+.onboarding-holder {
+  // @apply py-2 px-3;
+  margin: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  border: 1px solid black;
+  width: auto;
+  max-width: 1200px;
+
+  .boardingstep:nth-child(1) {
+    margin-top: 50px;
+  }
+}
+
+h1 {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 50px;
+}

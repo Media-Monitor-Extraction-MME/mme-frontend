@@ -1,0 +1,14 @@
+.proceed-button {
+  @apply flex bg-[#5E47EB] text-white py-2 px-4 h4;
+  border-radius: 5px;
+  border-color: transparent;
+  text-decoration: none;
+  max-width: 900px;
+  min-height: 80px;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background: #3f25e1;
+  }
+}

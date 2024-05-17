@@ -1,0 +1,25 @@
+.notification-page {
+  h2 {
+    @apply h1;
+  }
+  p {
+  }
+
+  .btn-group {
+    @apply flex content-end;
+    .notification-save {
+      @apply bg-[#5E47EB] text-white py-2 px-4 h4;
+      padding-left: 100px;
+      padding-right: 100px;
+      border-color: transparent;
+      text-decoration: none;
+      margin-left: auto;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background: #3f25e1;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.boardingheader {
+  @apply flex items-center justify-between py-4 px-6 bg-transparent;
+  border-bottom: black 1px solid;
+
+  div {
+    @apply flex items-center;
+
+    img {
+      @apply ml-5 my-2;
+    }
+  }
+}

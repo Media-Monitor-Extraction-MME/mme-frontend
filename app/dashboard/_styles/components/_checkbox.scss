@@ -1,0 +1,10 @@
+.checkbox-wrapper {
+  @apply flex items-center;
+
+  * {
+    @apply m-1;
+  }
+  input[type='checkbox'] {
+    display: none;
+  }
+}

@@ -1,0 +1,17 @@
+.boardingstep-button {
+  @apply bg-[#5E47EB] py-2 px-4 text-white mt-2 h6;
+  border-radius: 5px;
+  border-color: transparent;
+  width: 350px;
+  &:hover {
+    background: #3f25e1;
+  }
+  div {
+    @apply flex items-center justify-between;
+    // font-size: 20px;
+    span {
+      // font-size: 20px;
+      @apply mr-5 h6;
+    }
+  }
+}

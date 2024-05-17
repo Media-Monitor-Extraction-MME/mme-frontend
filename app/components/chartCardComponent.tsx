@@ -1,3 +1,5 @@
+import { convertSentimentToLineChartType } from '@/libs/convertSentimentToLineChartType';
+import { SentimentBType } from '@/types/sentimentType';
 import { Card } from '@tremor/react';
 
 interface ChartCardComponentProps {

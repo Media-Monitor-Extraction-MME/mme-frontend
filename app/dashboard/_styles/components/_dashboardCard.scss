@@ -1,0 +1,27 @@
+.dashboard-card {
+  @apply flex flex-col bg-white mt-4 p-3;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  height: 350px;
+  width: 100%;
+  // min-width: 500px;
+
+  &.p-0 {
+    padding: 0;
+  }
+  &__title {
+    @apply h4;
+    font-weight: 600;
+  }
+
+  &__content {
+    @apply flex flex-col;
+    height: calc(100% - 30px);
+    max-height: 100%;
+    overflow-y: auto;
+
+    img {
+      max-height: 100%;
+    }
+  }
+}
