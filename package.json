@@ -16,6 +16,7 @@
     "@mui/x-charts": "^7.1.0",
     "@remixicon/react": "^4.2.0",
     "@tremor/react": "^3.10.0",
+    "@tweenjs/tween.js": "^23.1.2",
     "@types/js-cookie": "^3.0.5",
     "@types/node": "20.8.9",
     "@types/react": "18.2.33",
@@ -43,6 +44,7 @@
     "react-router-dom": "^6.23.0",
     "server-only": "^0.0.1",
     "tailwindcss": "^3.3.5",
+    "tweenjs": "^1.0.2",
     "typescript": "5.2.2"
   },
   "prettier": {

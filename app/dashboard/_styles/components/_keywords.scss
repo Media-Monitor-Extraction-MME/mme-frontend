@@ -1,0 +1,17 @@
+.keywords {
+  @apply bg-white flex w-full p-3;
+  border-bottom: 1px solid #e4e4e4;
+
+  li {
+    @apply flex items-center m-1 bg-gray-100 rounded-md;
+    border: 1px solid #e4e4e4;
+    .checkbox-wrapper {
+      @apply p-1;
+    }
+  }
+  &__option-button {
+    @apply flex items-center px-3 py-1;
+    border-left: 1px solid #e4e4e4;
+    height: 100%;
+  }
+}

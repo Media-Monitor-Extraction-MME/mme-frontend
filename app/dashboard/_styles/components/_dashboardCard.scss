@@ -13,7 +13,45 @@
     @apply h4;
     font-weight: 600;
   }
+  &__action {
+    @apply inline-block w-auto;
+    float: right;
 
+    a.view-all {
+      @apply text-[#6461E5] font-bold;
+      svg {
+        @apply inline-block;
+        margin-left: 5px;
+      }
+    }
+
+    .dropdown {
+      @apply inline-block;
+      position: relative;
+
+      .dropdown-content {
+        @apply hidden absolute right-0 z-10;
+        background-color: #f9f9f9;
+        border: 1px solid #e4e4e4;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        min-width: 160px;
+        padding: 5px 0;
+        top: 30px;
+
+        a {
+          @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100;
+        }
+      }
+
+      &:hover .dropdown-content {
+        @apply block;
+      }
+    }
+    // button {
+    //   @apply bg-[#6461E5] border-none text-white px-3 py-1 rounded-md;
+    // }
+  }
   &__content {
     @apply flex flex-col;
     height: calc(100% - 30px);

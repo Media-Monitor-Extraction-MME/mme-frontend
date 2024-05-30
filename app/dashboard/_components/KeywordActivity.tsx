@@ -8,6 +8,7 @@ interface KeywordActivityProps {
 }
 
 const KeywordActivity: React.FC<KeywordActivityProps> = () => {
+  // return <></>;
   const chartData: ChartData<'line', (number | Point | null)[], unknown> = {
     labels: [
       'Sep',
@@ -43,6 +44,11 @@ const KeywordActivity: React.FC<KeywordActivityProps> = () => {
       <Line
         data={chartData}
         options={{
+          plugins: {
+            legend: {
+              position: 'bottom' as const
+            }
+          },
           elements: {
             line: {
               tension: 0.3

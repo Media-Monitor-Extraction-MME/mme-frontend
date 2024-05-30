@@ -6,8 +6,53 @@
 
   width: 100%;
 
+  table {
+    @apply w-full;
+
+    thead {
+      tr {
+        @apply font-bold;
+        border-bottom: 1px solid #e2e8f0;
+        color: #696565;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        width: 100%;
+
+        th {
+          @apply text-right pb-2 px-2;
+        }
+
+        th:nth-child(1) {
+          @apply text-left;
+        }
+        th:nth-child(2) {
+          @apply text-left;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        width: 100%;
+
+        td {
+          @apply text-right px-2 py-2;
+        }
+
+        td:nth-child(1) {
+          @apply text-left font-bold;
+        }
+        td:nth-child(2) {
+          @apply text-left;
+        }
+      }
+    }
+  }
+
   &__titles {
-    @apply grid grid-cols-3 justify-between font-bold pb-2;
+    @apply grid grid-cols-4 justify-between font-bold pb-2;
     border-bottom: 1px solid #e2e8f0;
     color: #696565;
     flex-wrap: wrap;
@@ -21,10 +66,13 @@
     *:nth-child(1) {
       @apply text-left;
     }
+    *:nth-child(2) {
+      @apply text-left;
+    }
   }
 
   &__row {
-    @apply grid grid-cols-3 justify-between;
+    @apply grid grid-cols-4 justify-between;
     flex-wrap: wrap;
     margin-bottom: 10px;
     width: 100%;
@@ -35,6 +83,13 @@
 
     &__word {
       @apply font-bold text-left;
+    }
+
+    *:nth-child(1) {
+      @apply text-left;
+    }
+    *:nth-child(2) {
+      @apply text-left;
     }
   }
 }

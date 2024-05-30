@@ -1,0 +1,28 @@
+.tabs {
+  @apply inline-block;
+
+  button:nth-child(1) {
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+  }
+
+  button:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+
+  button {
+    @apply px-3 py-1;
+    border: #e4e4e4 1px solid;
+
+    &.active {
+      background-color: #ebebff;
+      border-color: #6461e5;
+      border-right: 1px solid #6461e5;
+      color: #6461e5;
+    }
+
+    &.active + button {
+      border-left: none;
+    }
+  }
+}
