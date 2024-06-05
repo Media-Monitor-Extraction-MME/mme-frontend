@@ -15,7 +15,7 @@ const KeywordPerformance: React.FC<KeywordPerformanceProps> = () => {
         position: 'bottom' as const
       },
       title: {
-        display: true,
+        display: false,
         text: 'Chart.js Bar Chart'
       }
     }
@@ -35,14 +35,16 @@ const KeywordPerformance: React.FC<KeywordPerformanceProps> = () => {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Reddit',
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        barThickness: 25,
+        backgroundColor: '#59CBFC'
       },
       {
-        label: 'Dataset 2',
+        label: 'X (Twitter)',
+        barThickness: 25,
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: 'rgba(53, 162, 235, 0.5)'
+        backgroundColor: '#6461E5'
       }
     ]
   };

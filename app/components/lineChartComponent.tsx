@@ -23,7 +23,6 @@ export function LineChartComponent({
 
   lineChartData = convertSentimentToLineChartType(sentimentData || []);
 
-  console.log('lineChartData', lineChartData);
   return (
     <LineChart
       className="h-80"

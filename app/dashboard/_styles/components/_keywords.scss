@@ -1,6 +1,10 @@
 .keywords {
   @apply bg-white flex w-full p-3;
   border-bottom: 1px solid #e4e4e4;
+  height: 75px;
+  top: 75px;
+  z-index: 50;
+  position: sticky;
 
   li {
     @apply flex items-center m-1 bg-gray-100 rounded-md;

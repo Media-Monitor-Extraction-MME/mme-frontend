@@ -1,18 +1,15 @@
-import Canvas from '@/components/Canvas';
-import UpdateProgress from '@/onboarding/libs/UpdateProgress';
-import { set } from '@auth0/nextjs-auth0/dist/session';
-import React, { useEffect, useState } from 'react';
-import TWEEN from '@tweenjs/tween.js';
+import React, { useState } from 'react';
 import CanvasV2 from '@/components/CanvasV2';
+import '@/dashboard/_styles/components/_keywordMood.scss';
 
 interface KeywordMoodProps {
   sentiment: number;
 }
 const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
   const moods = [
-    { mood: 'Positive', color: '#E56261' },
+    { mood: 'Negative', color: '#E56261' },
     { mood: 'Neutral', color: '#FCD059' },
-    { mood: 'Negative', color: '#43CD84' }
+    { mood: 'Positive', color: '#43CD84' }
   ];
   const refs = [
     React.createRef<HTMLCanvasElement>(),
@@ -32,14 +29,11 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.translate(0, centerY);
 
-    console.log(increase);
-
     const angle = Math.PI / division;
 
     const x = centerX + -radius * Math.cos(angle * increase);
     const y = centerY + -radius * Math.sin(angle * increase);
 
-    console.log(x, y);
     // ctx.clearRect(x, y, radius / 10, radius / 10);
 
     // Draw the point on the circle
@@ -58,55 +52,71 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
   };
   const DrawSmiley = (
     ctx: CanvasRenderingContext2D,
+    centerX: number,
+    centerY: number,
+    radius: number,
+    mood: number
+  ) => {
+    // ...
+
+    // Draw the SVG image
+    const image = new Image();
+    if (mood >= 0 && mood < 0.3) {
+      image.src = '/images/sad-smiley.svg';
+    } else if (mood >= 0.3 && mood < 0.7) {
+      image.src = '/images/neutral-smiley.svg';
+    } else {
+      image.src = '/images/happy-smiley.svg';
+    }
+    image.onload = () => {
+      ctx.drawImage(image, centerX - 50, centerY - (radius / 2 + 50), 100, 100);
+    };
+
+    // ...
+  };
+
+  const DrawMentions = (
+    ctx: CanvasRenderingContext2D,
     canvas: HTMLCanvasElement,
     centerX: number,
     centerY: number,
-    radius: number
+    radius: number,
+    mentions: number,
+    mood: number
   ) => {
-    radius = 40;
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'green';
-    ctx.fill();
+    // Draw the mentions number
+    ctx.font = '40px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(mentions.toString(), centerX, centerY + 150);
 
-    // Draw the eyes
-    const eyeRadius = radius / 10;
-    const eyeOffsetX = radius / 3;
-    const eyeOffsetY = radius / 3;
+    ctx.font = '25px Open Sans';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#6C788A';
+    ctx.fillText('Total keywords mentions', centerX, centerY + 200);
 
-    ctx.beginPath();
-    ctx.arc(
-      centerX - eyeOffsetX,
-      centerY - eyeOffsetY,
-      eyeRadius,
-      0,
-      2 * Math.PI,
-      false
-    );
+    ctx.font = '25px Open Sans';
+    ctx.textAlign = 'center';
     ctx.fillStyle = 'black';
-    ctx.fill();
+    ctx.fillText('Your keywords general mood is ', centerX - 40, centerY + 260);
 
-    ctx.beginPath();
-    ctx.arc(
-      centerX + eyeOffsetX,
-      centerY - eyeOffsetY,
-      eyeRadius,
-      0,
-      2 * Math.PI,
-      false
-    );
-    ctx.fillStyle = 'black';
-    ctx.fill();
-
-    // Draw the mouth
-    const mouthOffsetY = radius / 5;
-
-    ctx.beginPath();
-    ctx.arc(centerX, centerY + mouthOffsetY, radius / 2, 0, Math.PI, false);
-    ctx.lineWidth = radius / 20;
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
+    let moodText = '';
+    let textLeftMargin = 20;
+    if (mood >= 0 && mood < 0.3) {
+      ctx.fillStyle = moods[0].color;
+      moodText = moods[0].mood;
+      textLeftMargin = 167;
+    } else if (mood >= 0.3 && mood < 0.7) {
+      ctx.fillStyle = moods[1].color;
+      moodText = moods[1].mood;
+      textLeftMargin = 160;
+    } else {
+      ctx.fillStyle = moods[2].color;
+      moodText = moods[2].mood;
+      textLeftMargin = 162;
+    }
+    ctx.fillText(moodText, centerX + textLeftMargin, centerY + 260);
   };
+
   const DrawMood = (
     ctx: CanvasRenderingContext2D,
     canvas: HTMLCanvasElement,
@@ -160,7 +170,6 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
           false
         );
       } else if (isLastIndex) {
-        console.log('Last index');
         ctx.arc(
           centerX,
           centerY,
@@ -186,7 +195,6 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
     }
 
     for (let i = 0; i < moods.length; i++) {
-      console.log(i);
       drawSegment(i, centerX, centerY, radius, moods.length, moods[i].color);
     }
   };
@@ -208,11 +216,13 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
           const centerX = canvas.width / 2;
           const centerY = canvas.height / 2;
           const radius = centerX * 0.9;
-          canvas.height = canvas.height + centerX * 0.1;
+          canvas.height = canvas.height + centerX * 0.3;
           ctx.save();
           DrawMood(ctx, canvas, centerX, centerY, radius);
           ctx.restore();
-          DrawSmiley(ctx, canvas, centerX, centerY, radius);
+          DrawSmiley(ctx, centerX, centerY, radius, keywordMood);
+          ctx.restore();
+          DrawMentions(ctx, canvas, centerX, centerY, radius, 100, keywordMood);
           ctx.restore();
           DrawPointer(
             ctx,
@@ -225,6 +235,16 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
           );
         }}
       />
+      <div className="keyword-mood-social">
+        <div className="keyword-mood-social-x">
+          <b>X (Twitter) Activity</b>
+          <p>100 mentions</p>
+          <div>
+            <span>+121%</span> VS prev. 30 days
+          </div>
+        </div>
+        <div className="keyword-mood-social-reddit"></div>
+      </div>
     </div>
   );
 };

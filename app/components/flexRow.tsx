@@ -9,7 +9,6 @@ interface FlexRowProps {
 export function FlexRow({ numItems, className = '', columns }: FlexRowProps) {
   const gridTemplateColumns = `repeat(${numItems}, 1fr)`;
 
-  console.log(columns);
   return (
     <div
       style={{ display: 'grid', gridTemplateColumns }}

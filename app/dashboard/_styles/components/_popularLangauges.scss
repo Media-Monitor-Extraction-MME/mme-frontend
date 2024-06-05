@@ -1,0 +1,41 @@
+.popular-langauges {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  &__chart {
+    max-width: 50%;
+    max-height: 100%;
+  }
+
+  &__labels {
+    @apply p-10 w-full;
+    align-content: start;
+  }
+
+  &__label {
+    @apply flex w-full relative mt-4;
+    div:nth-child(2) {
+      width: 100%;
+    }
+    &__color-line {
+      border-width: 2px;
+      width: 0;
+      min-height: 100%;
+      border-radius: 5px;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    &__content {
+      @apply flex w-full justify-between;
+      &__name {
+        @apply text-lg;
+        font-weight: 600;
+      }
+      &__percentage {
+        @apply text-sm;
+        color: #6b7280;
+      }
+    }
+  }
+}

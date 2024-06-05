@@ -1,0 +1,22 @@
+.landingpage {
+  @apply flex flex-col items-start justify-start;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: rgb(9, 9, 121);
+  background: linear-gradient(
+    70deg,
+    rgba(9, 9, 121, 1) 0%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 45%,
+    rgba(94, 71, 235, 1) 100%
+  );
+
+  .boardingheader {
+    z-index: 100;
+    background-color: white;
+    width: 100vw;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+}

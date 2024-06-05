@@ -88,9 +88,7 @@ interface BarChartProps {
   };
 }
 export function BarChart({ data, options }: BarChartProps) {
-  console.log(data);
   const chartData = ConvertSentimentToBarChartType(data);
-  console.log(chartData);
   let chartOptions: {
     indexAxis: 'x' | 'y';
     stacked: boolean;

@@ -42,7 +42,6 @@ export function PopularPostsComponent({ keywords }: PopularPostsProps) {
       setPosts(uniquePosts);
     });
   }, [setPosts, keywords]);
-  console.log(posts);
   return (
     <div className="posts gap-6">
       {posts.map((post, index) => (

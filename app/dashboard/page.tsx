@@ -34,7 +34,6 @@ export default function PlaygroundPage() {
   ]);
 
   useEffect(() => {
-    console.log(activeKeywords);
     fetch(
       'http://localhost:3001/sentiments?keywords=' + activeKeywords.join(','),
       {
@@ -42,16 +41,12 @@ export default function PlaygroundPage() {
       }
     ).then(async (data) => {
       const json = await data.json();
-      console.log(json);
       setSentiments(json as Array<SentimentBType>);
-      console.log(
-        convertSentimentToLineChartType(json as Array<SentimentBType>)
-      );
+
       setLoading(false);
     });
   }, [setSentiments, setLoading, activeKeywords]);
 
-  console.log(sentiments);
   return (
     <div className="p-4">
       <div className="inline-block	">

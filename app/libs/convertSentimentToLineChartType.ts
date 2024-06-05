@@ -41,7 +41,6 @@ export function convertSentimentToLineChartType(
   const allKeys = Array.from(
     new Set(lineChartData.flatMap((data) => Object.keys(data)))
   );
-  console.log(allKeys);
 
   const minDate = new Date(
     Math.min(...sentiments.map((s) => new Date(s.sentimentDate).getTime()))

@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardingHeader from './_components/BoardingHeader';
+import BoardingHeader from '@/components/BoardingHeader';
 import '@/onboarding/_styles/layout.scss';
 
 export const metadata = {

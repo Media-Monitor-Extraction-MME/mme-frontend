@@ -1,0 +1,8 @@
+.reddit-posts {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  align-items: start;
+  justify-items: start;
+  margin-top: 1rem;
+}

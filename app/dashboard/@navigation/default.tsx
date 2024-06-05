@@ -12,6 +12,10 @@ import AssociatedHashtags from '../_components/AssociatedHashtags';
 import CustomDropdown from '../_components/CustomDropdown';
 import Tabs from '../_components/Tabs';
 import { KeywordContext } from '../_providers/KeywordProvider';
+import ActiveTimes from '../_components/ActiveTimes';
+import PopularLanguages from '../_components/PopularLangauges';
+import RedditPosts from '../_components/RedditPosts';
+import TwitterPosts from '../_components/TwitterPosts';
 
 const Default: React.FC = () => {
   const { keywords } = useContext(KeywordContext);
@@ -28,7 +32,6 @@ const Default: React.FC = () => {
   //   }
   // }, []);
 
-  console.log(keywords);
   return (
     <div className="dashboard">
       <div className="dashboard__grid">
@@ -39,7 +42,7 @@ const Default: React.FC = () => {
             title: 'p-4'
           }}
         >
-          <KeywordMood sentiment={0} />
+          <KeywordMood sentiment={0.2} />
         </DashboardCard>
         <DashboardCard
           title="General Keywords Activity"
@@ -94,14 +97,15 @@ const Default: React.FC = () => {
           </>
         </DashboardCard>
         <DashboardCard title="Popular Languages Used With Keywords" colSpan={6}>
-          <></>
+          <PopularLanguages />
         </DashboardCard>
         <DashboardCard title="Most Active Times" colSpan={6}>
-          <></>
+          <ActiveTimes />
         </DashboardCard>
         <DashboardCard
           title="Top 10 Popular Posts"
           colSpan={6}
+          height={800}
           actionElement={
             <a className="view-all" href="#">
               {'View All'}
@@ -130,11 +134,12 @@ const Default: React.FC = () => {
             </a>
           }
         >
-          <></>
+          <RedditPosts />
         </DashboardCard>
         <DashboardCard
           title="Top 10 Popular Posts "
           colSpan={6}
+          height={800}
           actionElement={
             <a className="view-all" href="#">
               {'View All'}
@@ -163,7 +168,7 @@ const Default: React.FC = () => {
             </a>
           }
         >
-          <></>
+          <TwitterPosts />
         </DashboardCard>
       </div>
       {/* <div className="dashboard__row">

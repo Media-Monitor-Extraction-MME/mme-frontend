@@ -6,6 +6,7 @@ import Badge from '@/components/Badge';
 import { useRouter } from 'next/navigation';
 import UpdateProgress from '@/onboarding/libs/UpdateProgress';
 import GetProgress from '@/onboarding/libs/GetProgress';
+import Tooltip from '@/onboarding/_components/ToolTip';
 
 const Page: React.FC = () => {
   const [keywords, setKeywords] = useState<
@@ -49,7 +50,6 @@ const Page: React.FC = () => {
     const newKeywords = [...keywords];
     newKeywords[primaryIndex].secondaryKeywords[secondaryIndex] =
       event.target.value;
-    console.log(newKeywords);
     setKeywords(newKeywords);
   };
   const ChangePrimaryKeyword = (
@@ -104,7 +104,9 @@ const Page: React.FC = () => {
       <table className="keyword-table">
         <thead>
           <tr>
-            <th>Primary Keywords</th>
+            <th>
+              Primary Keywords <Tooltip />
+            </th>
             <th>Secondary Keywords</th>
           </tr>
         </thead>
@@ -124,39 +126,42 @@ const Page: React.FC = () => {
               </td>
               <td>
                 <div className="secondary-words">
-                  {keyword.secondaryKeywords.map(
-                    (secondaryKeyword, secondaryIndex) => (
-                      <>
-                        {keyword.secondaryKeywords.length ===
-                        secondaryIndex + 1 ? (
-                          <input
-                            key={index}
-                            type="text"
-                            value={secondaryKeyword}
-                            onChange={(event) => {
-                              ChangeSecondaryKeyword(
-                                event,
-                                index,
-                                secondaryIndex
-                              );
-                            }}
-                            onBlur={(event) => {
-                              if (event.target.value !== '') {
-                                AddSecondaryKeyword(index);
-                              }
-                            }}
-                          />
-                        ) : (
-                          <Badge
-                            onDismiss={() => {
-                              RemoveSecondaryKeyword(index, secondaryIndex);
-                            }}
-                            text={secondaryKeyword}
-                          />
-                        )}
-                      </>
-                    )
-                  )}
+                  <div className="secondary-words-holder">
+                    {keyword.secondaryKeywords.map(
+                      (secondaryKeyword, secondaryIndex) => (
+                        <>
+                          {keyword.secondaryKeywords.length ===
+                          secondaryIndex + 1 ? (
+                            <input
+                              key={index}
+                              type="text"
+                              value={secondaryKeyword}
+                              onChange={(event) => {
+                                ChangeSecondaryKeyword(
+                                  event,
+                                  index,
+                                  secondaryIndex
+                                );
+                              }}
+                              onBlur={(event) => {
+                                if (event.target.value !== '') {
+                                  AddSecondaryKeyword(index);
+                                }
+                              }}
+                            />
+                          ) : (
+                            <Badge
+                              onDismiss={() => {
+                                RemoveSecondaryKeyword(index, secondaryIndex);
+                              }}
+                              text={secondaryKeyword}
+                            />
+                          )}
+                        </>
+                      )
+                    )}
+                  </div>
+
                   <button
                     onClick={(event) => {
                       const keywords = keyword.secondaryKeywords;
@@ -204,7 +209,7 @@ const Page: React.FC = () => {
             router.replace('/onboarding');
           }}
         >
-          Save
+          Next Step
         </button>
       </div>
     </div>

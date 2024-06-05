@@ -1,6 +1,6 @@
 .dashboard {
   @apply flex flex-col bg-gray-50;
-  min-height: calc(100% - 10vh);
+  min-height: calc(100vh - 150px);
   // padding: 20px;
   display: flex;
   justify-content: space-between;

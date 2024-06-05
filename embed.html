@@ -18,9 +18,29 @@
 </blockquote>
 <script async="" src="./redditWidgetScript.js" charset="UTF-8"></script> -->
 
+<iframe
+  title="reddit-embed"
+  src="https://embed.reddit.com/r/SNKRS/comments/1c6tjd4/loving_them_cant_wait_to_rock/"
+  width="600px"
+  height="316px"
+  allowfullscreen="true"
+  sandbox="allow-scripts allow-same-origin allow-popups "
+  allow="clipboard-read; clipboard-write"
+></iframe>
+
 <canvas id="myCanvas" width="600" height="300" style="border: 1px solid black">
 </canvas>
 
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/GXy3Dr6cPgQ?si=8DMvW4WFQgqhtBbu"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
 <canvas
   id="myCanvastest"
   width="400"
@@ -70,7 +90,6 @@
           false
         );
       } else if (isLastIndex) {
-        console.log('Last index');
         ctx.arc(
           centerX,
           centerY,
@@ -102,7 +121,6 @@
     ];
 
     for (var i = 0; i < moodArray.length; i++) {
-      console.log(i);
       drawSegment(
         i,
         centerX,

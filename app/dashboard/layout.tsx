@@ -23,7 +23,6 @@ export default function RootLayout({
   navigation: React.ReactNode;
   sidebar: React.ReactNode;
 }>) {
-  console.log(sidebar);
   return (
     <Providers>
       <div className="flex">
