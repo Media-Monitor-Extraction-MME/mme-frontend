@@ -1,4 +1,5 @@
 'use client';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import { set } from '@auth0/nextjs-auth0/dist/session';
 import React, {
   Dispatch,
@@ -22,6 +23,12 @@ interface KeywordContextType {
   removeActiveKeyword: (keyword: string) => void;
 }
 
+interface UserTask {
+  _id: any;
+  userId: string;
+  keywords: string[];
+}
+
 // Create the context
 export const KeywordContext = createContext<KeywordContextType>({
   keywords: [],
@@ -35,6 +42,7 @@ export const KeywordContext = createContext<KeywordContextType>({
 const KeywordProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
+  const userContext = useUser();
   const [keywords, setKeywords] = useState<
     Array<{
       primary: string;
@@ -42,6 +50,25 @@ const KeywordProvider: React.FC<{
     }>
   >([]);
   const [activeKeywords, setActiveKeywords] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (userContext.user) {
+      fetch('http://localhost:3001/tasks', {
+        headers: {
+          Authorization: `Bearer ${userContext.user.token}`
+        }
+      })
+        .then((data) => {
+          return data.json();
+        })
+        .then((json: UserTask) => {
+          // setKeywords({
+          //   primary: json.keywords,
+          //   secondary
+          // });
+        });
+    }
+  }, [userContext]);
 
   useEffect(() => {
     const sessionString = sessionStorage.getItem('progress') as string;

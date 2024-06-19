@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '@/onboarding/_styles/pages/_keywords.scss';
 import { FaPlus } from 'react-icons/fa';
 import Badge from '@/components/Badge';
@@ -7,8 +7,16 @@ import { useRouter } from 'next/navigation';
 import UpdateProgress from '@/onboarding/libs/UpdateProgress';
 import GetProgress from '@/onboarding/libs/GetProgress';
 import Tooltip from '@/onboarding/_components/ToolTip';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { getSession, Session } from '@auth0/nextjs-auth0';
+import { useAccessToken } from '@/_providers/AccessTokenProvider';
 
 const Page: React.FC = () => {
+  const { accessToken } = useAccessToken();
+
+  // const userContext = useUser();
+  // const user = userContext.user;
+  // console.log(userContext);
   const [keywords, setKeywords] = useState<
     Array<{
       keyword: string;
@@ -20,75 +28,97 @@ const Page: React.FC = () => {
       secondaryKeywords: []
     }
   ]);
+  const [processKeywords, setProcessKeywords] = useState<boolean>(false);
+
   const router = useRouter();
 
   useEffect(() => {
-    const progress = GetProgress();
-    if (progress.keywords) {
-      setKeywords(
-        progress.keywords.map((keyword) => {
-          const secondaryKeywords = keyword.secondary;
-          secondaryKeywords.push('');
+    // console.log(accessToken);
+    // if (accessToken !== '' && accessToken !== null) {
+    //   fetch('http://localhost:3001/user-task', {
+    //     method: 'POST',
+    //     body: JSON.stringify({
+    //       keywords: keywords.map((keyword) => {
+    //         return {
+    //           keyword: keyword.keyword,
+    //           secondaryKeywords: keyword.secondaryKeywords ?? [],
+    //           excludedKeywords: []
+    //         };
+    //       })
+    //     }),
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${accessToken}`
+    //     }
+    //   })
+    //     .then((response) => {
+    //       return response.json();
+    //     })
+    //     .then((data) => {
+    //       console.log(data);
+    //       // setKeywords(
+    //       //   data.keywords.map((keyword: any) => {
+    //       //     return {
+    //       //       keyword: keyword.primary,
+    //       //       secondaryKeywords: keyword.secondary
+    //       //     };
+    //       //   })
+    //       // );
+    //     });
+    // }
+    // if (user && processKeywords === true) {
+    //   setProcessKeywords(false);
+    //   fetch('http://localhost:3001/user-task', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${user.token}`
+    //     },
+    //     body: JSON.stringify({
+    //       keywords: keywords.map((keyword) => {
+    //         return {
+    //           keyword: keyword.keyword,
+    //           secondaryKeywords: keyword.secondaryKeywords ?? [],
+    //           excludedKeywords: []
+    //         };
+    //       })
+    //     })
+    //   }).then((response) => {
+    //     console.log(response);
+    //   });
+    // }
+  }, [accessToken, keywords]);
+
+  const handleSubmit = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    console.log('submit');
+    event.preventDefault();
+
+    fetch('http://localhost:3001/user-task', {
+      method: 'POST',
+      body: JSON.stringify({
+        keywords: keywords.map((keyword) => {
           return {
-            keyword: keyword.primary,
-            secondaryKeywords: secondaryKeywords
+            keyword: keyword.keyword,
+            secondaryKeywords: keyword.secondaryKeywords ?? [],
+            excludedKeywords: []
           };
         })
-      );
-    }
-  }, []);
-  const AddSecondaryKeyword = (index: number) => {
-    const newKeywords = [...keywords];
-    newKeywords[index].secondaryKeywords.push('');
-    setKeywords(newKeywords);
-  };
-  const ChangeSecondaryKeyword = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    primaryIndex: number,
-    secondaryIndex: number
-  ) => {
-    const newKeywords = [...keywords];
-    newKeywords[primaryIndex].secondaryKeywords[secondaryIndex] =
-      event.target.value;
-    setKeywords(newKeywords);
-  };
-  const ChangePrimaryKeyword = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const newKeywords = [...keywords];
-    newKeywords[index].keyword = event.target.value;
-    setKeywords(newKeywords);
-  };
-  const AddPrimaryKeyword = () => {
-    setKeywords([
-      ...keywords,
-      {
-        keyword: '',
-        secondaryKeywords: []
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`
       }
-    ]);
-  };
-  const RemoveSecondaryKeyword = (
-    primaryIndex: number,
-    secondaryIndex: number
-  ) => {
-    const newKeywords = Object.assign([{}], keywords);
-    // const secKeywords = newKeywords[primaryIndex].secondaryKeywords.splice(
-    //   secondaryIndex,
-    //   1
-    // );
-
-    // const secondwords: string[] = [];
-    // newKeywords[primaryIndex].secondaryKeywords.forEach((word) => {
-    //   secondwords.push(word);
-    // });
-    newKeywords[primaryIndex].secondaryKeywords = newKeywords[
-      primaryIndex
-    ].secondaryKeywords.filter((kword, index) => {
-      return index !== secondaryIndex;
     });
-    setKeywords([...newKeywords]);
+    router.replace('/onboarding');
+    // handle form submission logic here
+  };
+  const ChangeKeyword = (keyword: string, index: number) => {
+    const newKeywords = [...keywords];
+    newKeywords[index] = { ...keywords[index], keyword: keyword };
+
+    setKeywords(newKeywords);
   };
 
   if (keywords === undefined) {
@@ -105,7 +135,7 @@ const Page: React.FC = () => {
         <thead>
           <tr>
             <th>
-              Primary Keywords <Tooltip />
+              Primary Keywords <Tooltip content={''} />
             </th>
             <th>Secondary Keywords</th>
           </tr>
@@ -119,7 +149,10 @@ const Page: React.FC = () => {
                     type="text"
                     value={keyword.keyword}
                     onChange={(event) => {
-                      ChangePrimaryKeyword(event, index);
+                      ChangeKeyword(event.target.value, index);
+                    }}
+                    onBlur={(event) => {
+                      setProcessKeywords(true);
                     }}
                   />
                 </div>
@@ -137,22 +170,22 @@ const Page: React.FC = () => {
                               type="text"
                               value={secondaryKeyword}
                               onChange={(event) => {
-                                ChangeSecondaryKeyword(
-                                  event,
-                                  index,
-                                  secondaryIndex
-                                );
+                                // ChangeSecondaryKeyword(
+                                //   event,
+                                //   index,
+                                //   secondaryIndex
+                                // );
                               }}
                               onBlur={(event) => {
-                                if (event.target.value !== '') {
-                                  AddSecondaryKeyword(index);
-                                }
+                                // if (event.target.value !== '') {
+                                //   AddSecondaryKeyword(index);
+                                // }
                               }}
                             />
                           ) : (
                             <Badge
                               onDismiss={() => {
-                                RemoveSecondaryKeyword(index, secondaryIndex);
+                                // RemoveSecondaryKeyword(index, secondaryIndex);
                               }}
                               text={secondaryKeyword}
                             />
@@ -167,7 +200,7 @@ const Page: React.FC = () => {
                       const keywords = keyword.secondaryKeywords;
                       if (keywords.length === 0) {
                         if (keywords[keywords.length - 1] !== '') {
-                          AddSecondaryKeyword(index);
+                          // AddSecondaryKeyword(index);
                         }
                       }
                     }}
@@ -183,7 +216,7 @@ const Page: React.FC = () => {
             <td colSpan={2}>
               <button
                 onClick={() => {
-                  AddPrimaryKeyword();
+                  // AddPrimaryKeyword();
                 }}
               >
                 Add
@@ -197,16 +230,8 @@ const Page: React.FC = () => {
       <div className="btn-group">
         <button
           className="keyword-save"
-          onClick={() => {
-            UpdateProgress({
-              keywords: keywords.map((keyword) => {
-                return {
-                  primary: keyword.keyword,
-                  secondary: keyword.secondaryKeywords
-                };
-              })
-            });
-            router.replace('/onboarding');
+          onClick={(event) => {
+            handleSubmit(event);
           }}
         >
           Next Step

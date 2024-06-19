@@ -1,6 +1,6 @@
 'use client';
 import React, { useContext } from 'react';
-import { KeywordContext } from '../_providers/KeywordProvider';
+import { KeywordContext } from '../../_providers/KeywordProvider';
 import Checkbox from './Checkbox';
 import { FaEllipsisV } from 'react-icons/fa';
 import '@/dashboard/_styles/components/_keywords.scss';

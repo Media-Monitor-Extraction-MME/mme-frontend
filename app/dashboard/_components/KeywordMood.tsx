@@ -1,9 +1,11 @@
+'use client';
 import React, { useState } from 'react';
 import CanvasV2 from '@/components/CanvasV2';
 import '@/dashboard/_styles/components/_keywordMood.scss';
 
 interface KeywordMoodProps {
   sentiment: number;
+  mentions: number;
 }
 const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
   const moods = [
@@ -222,7 +224,15 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
           ctx.restore();
           DrawSmiley(ctx, centerX, centerY, radius, keywordMood);
           ctx.restore();
-          DrawMentions(ctx, canvas, centerX, centerY, radius, 100, keywordMood);
+          DrawMentions(
+            ctx,
+            canvas,
+            centerX,
+            centerY,
+            radius,
+            props.mentions ?? 0,
+            keywordMood
+          );
           ctx.restore();
           DrawPointer(
             ctx,
@@ -235,7 +245,7 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
           );
         }}
       />
-      <div className="keyword-mood-social">
+      {/* <div className="keyword-mood-social">
         <div className="keyword-mood-social-x">
           <b>X (Twitter) Activity</b>
           <p>100 mentions</p>
@@ -244,7 +254,7 @@ const KeywordMood: React.FC<KeywordMoodProps> = (props) => {
           </div>
         </div>
         <div className="keyword-mood-social-reddit"></div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import '@/dashboard/_styles/components/_keywordPerformance.scss';
 import { Bar } from 'react-chartjs-2';
