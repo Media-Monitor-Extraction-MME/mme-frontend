@@ -3,7 +3,6 @@
 
   &:not(.border-none) {
     border-bottom: black 1px solid;
-    // @apply border-none;
   }
 
   div {
@@ -11,6 +10,55 @@
 
     img {
       @apply ml-5 my-2;
+    }
+  }
+
+  .header-buttons {
+    @apply flex items-center space-x-4 mr-12;
+
+    .login-button {
+      @apply py-2 px-4 rounded text-black border border-gray-500 no-underline;
+      font-size: 20px;
+      background-color: white;
+      transition: background-color 0.3s ease;
+    }
+    
+    .login-button:hover {
+      background-color: gray;
+    }
+
+    .dropdown {
+      @apply relative inline-block;
+
+      .language-button {
+        @apply flex items-center py-2 px-4 rounded hover:bg-purple-500 text-white;
+        background-color: #5e47eb;
+        transition: background-color 0.3s ease
+      }
+
+      .language-button img {
+        @apply w-8 h-auto mr-2;
+      }
+
+      .language-button svg {
+        @apply w-4 h-4 ml-2;
+      }
+
+      .language-button:hover {
+        background-color: #40329e
+      }
+
+      .dropdown-content {
+        @apply absolute right-0 mt-2 w-48 py-2 bg-white rounded shadow-lg hidden;
+
+        a {
+          @apply block px-4 py-2 text-gray-800 hover:bg-gray-200;
+        }
+      }
+
+      &:hover .dropdown-content {
+        @apply block;
+      }
     }
   }
 }

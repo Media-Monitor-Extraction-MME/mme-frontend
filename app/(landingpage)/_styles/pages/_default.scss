@@ -1,5 +1,6 @@
 .home {
-  @apply flex justify-between w-full;
+  @apply flex justify-between w-full relative;
+
   &-content {
     @apply flex justify-start items-start m-0 flex-col h-full;
     width: 35vw;
@@ -37,23 +38,24 @@
 
 .home-image {
   @apply flex justify-center items-center;
-  width: 55vw;
+  width: 60vw;
 }
 .image-holder {
   @apply relative flex justify-center items-center ml-20;
   width: max-content;
-  padding-right: 1.25rem;
+  // padding-right: 0.25rem;
 
   img {
     position: sticky;
     z-index: 10;
+    border-radius: 10px 0px 0px 10px;
   }
-  &-underlay {
-    @apply absolute top-5 left-5 w-full h-full;
-    margin-left: -1.25rem;
-    border: 2px solid #5e47eb;
-    border-radius: 20px;
-  }
+  // &-underlay {
+  //   @apply absolute top-5 left-5 w-full h-full;
+  //   margin-left: -1.25rem;
+  //   border: 2px solid #5e47eb;
+  //   border-radius: 20px;
+  // }
 }
 
 @media (max-width: 1000px) {

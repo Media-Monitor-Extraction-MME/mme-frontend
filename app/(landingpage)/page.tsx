@@ -7,7 +7,7 @@ import Image from 'next/image';
 const Page: React.FC = () => {
   return (
     <div className="home">
-      <div className="home-content">
+      <div className="home-content">        
         <h1>Create Your Own Social Performance Dashboard!</h1>
         <p>
           Analyze and improve your social media presence with real-time
