@@ -6,12 +6,11 @@ export const metadata = {
     'A dashboard displaying the sentiment analysis of a few user selected keywords.'
 };
 
-type LayoutProps = {
+type RootLayoutProps = {
   children: React.ReactNode;
-  auth: React.ReactNode;
 };
 
-export default function RootLayout({ children }: Readonly<LayoutProps>) {
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
       <body className="h-full" style={{ margin: 0 }}>
