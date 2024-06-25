@@ -88,7 +88,7 @@
       .concat(o, ' warning: unexpected ')
       .concat(e, ' parameter: ')
       .concat(t);
-    n && (r += ', '.concat(n, '.')), console.log(r);
+    n && (r += ', '.concat(n, '.'));
   }
   function x(e) {
     var n = e.depth,
@@ -254,15 +254,12 @@
           if (!a) return { v: void 0 };
           var c = (function (t, e) {
             var n = document.createElement('iframe');
-            console.log(t, e, n);
             return (
               e &&
                 n.setAttribute(
                   'height',
                   (function (t) {
-                    console.log(t);
                     var e = ''.concat(t);
-                    console.log(e);
                     return 'px' === e.substring(e.length - 2)
                       ? e
                       : ''.concat(e, 'px');

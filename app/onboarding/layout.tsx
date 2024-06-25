@@ -15,7 +15,9 @@ const getAccessToken = async () => {
   const { accessToken } = await getAuth0AccessToken();
   return accessToken;
 };
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Layout: React.FC<{ children: React.ReactNode; steps: any }> = ({
+  children
+}) => {
   const accessToken = getAccessToken();
 
   return (

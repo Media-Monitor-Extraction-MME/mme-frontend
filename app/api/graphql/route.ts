@@ -1,5 +1,5 @@
 import { getSession } from '@auth0/nextjs-auth0';
-import { NextApiResponse, NextApiRequest } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 
 type PostType = {
   title?: string;
@@ -37,10 +37,10 @@ type MentionType = {
   };
 };
 export async function POST(
-  req: NextApiRequest,
-  res: NextApiResponse
+  req: NextRequest,
+  res: NextResponse
 ): Promise<
-  NextApiResponse<{
+  NextResponse<{
     posts?: PostType[];
     redditPosts?: PostType[];
     twitterPosts?: PostType[];
@@ -69,13 +69,13 @@ export async function POST(
       };
     });
 
-    return NextApiResponse.json(content, {
+    return NextResponse.json(content, {
       status: 200
     });
   }
 
   console.log(session, body);
-  return NextApiResponse.json(null, {
+  return NextResponse.json(null, {
     status: 500
   });
   // Use the session object as needed

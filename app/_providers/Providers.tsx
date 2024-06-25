@@ -11,7 +11,6 @@ export const UserRedirect: React.FC<{
   children: React.ReactNode;
 }> = async ({ children }) => {
   const session = await getSession();
-  console.log(session);
   if (!session) {
     redirect('/api/auth/login');
     return <></>;

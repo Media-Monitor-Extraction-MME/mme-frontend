@@ -24,7 +24,7 @@ const RenderCanvasElement: React.FC<{
 }> = (props) => {
   let ref = useRef<HTMLCanvasElement>(null);
   if (props.getRef) {
-    ref = props.getRef();
+    ref = props.getRef(0);
   }
   const [isDrawing, setIsDrawing] = useState(false);
   const { canvasDraw } = props;

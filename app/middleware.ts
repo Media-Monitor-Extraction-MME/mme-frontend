@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   const currentUrl = new URL(request.nextUrl);
-  console.log(currentUrl.pathname);
+  // console.log(currentUrl.pathname);
   return NextResponse.redirect(new URL('/home', request.url));
 }
 

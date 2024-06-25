@@ -31,7 +31,6 @@ const RedditPosts: React.FC<RedditPostsProps> = () => {
   }
 
   const combinedStyles = post?.styles.join(' ');
-  console.log(combinedStyles);
   return (
     <div
       className="reddit-posts"

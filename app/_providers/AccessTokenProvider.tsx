@@ -30,7 +30,6 @@ const AccessTokenProvider: React.FC<AccessTokenProviderProps> = ({
     const fetchAccessToken = async () => {
       try {
         const token = await accessToken;
-        console.log(token);
         setClientAccessToken(token ?? '');
       } catch (error) {
         console.error('Failed to retrieve access token:', error);

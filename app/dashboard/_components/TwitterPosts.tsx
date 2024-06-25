@@ -31,7 +31,6 @@ const TwitterPosts: React.FC<TwitterPostProps> = () => {
   }
 
   const combinedStyles = post?.styles.join(' ');
-  console.log(combinedStyles);
   return (
     <div
       className="reddit-posts"

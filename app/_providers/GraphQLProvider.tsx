@@ -17,9 +17,7 @@ const GraphQLProvider: FC<{ children: React.ReactNode }> = ({ children }) => {
   useEffect(() => {}, []);
 
   return (
-    <GraphQLContext.Provider
-      value={/* Provide the necessary values and methods */}
-    >
+    <GraphQLContext.Provider value={undefined}>
       {children}
     </GraphQLContext.Provider>
   );
